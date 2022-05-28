@@ -20,7 +20,8 @@ const App = () => {
                         const str = decoder.decode(strBuffer)
 
                         console.log(str)
-                    }
+                    },
+                    "printI": (i: number) => console.log(i)
                 }
             }
 
