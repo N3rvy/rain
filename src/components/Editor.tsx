@@ -23,7 +23,18 @@ const Editor = () => {
     onMount(() => {
         monEditor = editor.create(mount, {
             automaticLayout: true,
+            theme: "vs-dark",
+            minimap: { enabled: false },
+            language: "go",
+            fontSize: 20,
         });
+
+        monEditor.setValue(`func print(s String)
+func printI(i Int)
+
+func main() {
+    print("Hello, world!")
+}`);
     });
 
     return (

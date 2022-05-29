@@ -7,8 +7,7 @@
 .editorContainer {
     border-radius: 1rem;
     overflow: hidden;
-    border: 1px solid gray;
-    box-shadow: 0 0 0.2rem white;
+    border: 2px solid gray;
 }
 
 .editor {
@@ -22,9 +21,10 @@
     margin-top: 1rem;
     padding: 0.75rem;
     border-radius: 1rem;
-    background-color: white;
     color: black;
-    box-shadow: 0 0 0.2rem white;
+    background-color: #1e1e1e;
+    border: 2px solid gray;
+    color: #d4d4d4;
 }
 
 .resultIcon {
