@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
+}
+
+.editorContainer {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid gray;
+    box-shadow: 0 0 0.2rem white;
+}
+
+.editor {
+    width: 50rem;
+    height: 30rem;
+}
+
+.resultContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 0.2rem white;
+}
+
+.resultIcon {
+    padding-right: 1rem;
+    padding-left: 0.45rem;
+    cursor: pointer;
+}
+
+.resultList {
+    display: flex;
+    flex-direction: column;
+}
