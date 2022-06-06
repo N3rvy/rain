@@ -1,6 +1,6 @@
 export type Error = { error: string };
 export type Option<T> = T | undefined;
-export type Result<T> = T | Error;
+export type Result<T = void> = T | Error;
 
 export const hasValue = <T>(option: Option<T>): option is T =>
     option !== undefined;
