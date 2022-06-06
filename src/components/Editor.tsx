@@ -9,18 +9,18 @@ const Editor = () => {
     let mount!: HTMLDivElement;
     let monEditor: editor.IStandaloneCodeEditor;
 
-    const run = async (): Promise<string[]> => {
-        let results = [] as string[];
+    const [results, setResults] = createSignal<string[]>([]);
+
+    const run = async () => {
+        setResults([]);
 
         const runResult = await runCode(monEditor.getValue(), (s) => {
-            results = [...results, s];
+            setResults([...results(), s])
         });
 
         if (isErr(runResult)) {
-            results = ["Error: " + runResult.error];
+            setResults(["Error: " + runResult.error]);
         }
-
-        return results;
     };
 
     onMount(() => {
@@ -44,7 +44,8 @@ func main() {
             <div class={styles.editorContainer}>
                 <div ref={mount} class={styles.editor} />
             </div>
-            <Result run={run} />
+            <div class={styles.runButton} onClick={run}>R</div>
+            <Result results={results()} />
         </div>
     );
 };

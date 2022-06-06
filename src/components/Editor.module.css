@@ -10,6 +10,23 @@
     border: 2px solid gray;
 }
 
+.runButton {
+    width: 3.5rem;
+    height: 3rem;
+    position: absolute;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+
+    border-radius: 0 1rem 0 1rem;
+    border: 2px solid gray;
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
 .editor {
     width: 50rem;
     height: 30rem;
