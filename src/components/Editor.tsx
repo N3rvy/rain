@@ -29,8 +29,7 @@ const Editor = () => {
             fontSize: 20,
         });
 
-        monEditor.setValue(`func print(s String)
-func printI(i Int)
+        monEditor.setValue(`import "repl"
 
 func main() {
     print("Hello, world!")

@@ -11,7 +11,7 @@ const runCode = (code: string, onPrint: (s: string) => void): Result<void> => {
     let memory: WebAssembly.Memory | undefined = undefined;
 
     const imports = {
-        main: {
+        repl: {
             print: (strLoc: number) => {
                 if (!memory) {
                     console.error("Tried reading string with undefined memory");
