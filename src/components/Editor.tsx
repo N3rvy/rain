@@ -1,26 +1,31 @@
 import { editor } from "monaco-editor";
-import { createSignal, For, onMount } from "solid-js";
+import { createSignal, onMount } from "solid-js";
+import createWabt from "wabt";
 import runCode from "../run-code";
-import { isErr } from "../tools";
 import styles from "./Editor.module.css";
 import Result from "./Result";
+import WasmResult from "./WasmResult";
 
 const Editor = () => {
     let mount!: HTMLDivElement;
     let monEditor: editor.IStandaloneCodeEditor;
 
     const [results, setResults] = createSignal<string[]>([]);
+    const [wat, setWat] = createSignal<string>("");
 
     const run = async () => {
         setResults([]);
 
-        const runResult = await runCode(monEditor.getValue(), (s) => {
-            setResults([...results(), s])
-        });
+        await runCode(monEditor.getValue(), (s) => setResults([...results(), s]))
+            .then(async module => {
+                const wabt = await createWabt();
+                const mod = wabt.readWasm(module, {readDebugNames: true});
 
-        if (isErr(runResult)) {
-            setResults(["Error: " + runResult.error]);
-        }
+                setWat(mod.toText({foldExprs: true}))
+            })
+            .catch(err => {
+                setResults(["Error: " + String(err)]);
+            });
     };
 
     onMount(() => {
@@ -41,11 +46,14 @@ func main() {
 
     return (
         <div class={styles.container}>
-            <div class={styles.editorContainer}>
-                <div ref={mount} class={styles.editor} />
+            <div>
+                <div class={styles.editorContainer}>
+                    <div ref={mount} class={styles.editor} />
+                    <div class={styles.runButton} onClick={run}>R</div>
+                </div>
+                <Result results={results()} />
             </div>
-            <div class={styles.runButton} onClick={run}>R</div>
-            <Result results={results()} />
+            <WasmResult wat={wat} />
         </div>
     );
 };

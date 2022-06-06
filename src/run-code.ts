@@ -1,13 +1,8 @@
 import { build_from_code } from "./assets/reverse-bin/portal_wasm_build";
 import { Result } from "./tools";
 
-const runCode = async (code: string, onPrint: (s: string) => void): Promise<Result> => {
-    let module: BufferSource;
-    try {
-        module = build_from_code(code);
-    } catch (ex) {
-        return { error: String(ex) };
-    }
+const runCode = async (code: string, onPrint: (s: string) => void): Promise<BufferSource> => {
+    let module: BufferSource = build_from_code(code);
     let memory: WebAssembly.Memory | undefined = undefined;
 
     const imports = {
@@ -40,6 +35,8 @@ const runCode = async (code: string, onPrint: (s: string) => void): Promise<Resu
     if (main) {
         (main as any)();
     }
+
+    return module;
 };
 
 export default runCode;
