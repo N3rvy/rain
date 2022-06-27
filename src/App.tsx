@@ -1,13 +1,21 @@
 import styles from "./App.module.css";
 import Editor from "./components/Editor";
-import init, { add_module, init_engine } from "./assets/reverse-bin/portal_wasm_build";
+import init, {
+    add_module,
+    init_engine,
+} from "./assets/reverse-bin/portal_wasm_build";
 
 const App = () => {
     init().then(() => {
-        add_module("repl", `
+        add_module(
+            "repl",
+            `
 import func print(s String)
+import func write(s String)
 import func printI(i Int)
-        `);
+import func writeI(i Int)
+        `
+        );
         init_engine();
     });
 
