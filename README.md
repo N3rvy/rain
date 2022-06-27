@@ -8,4 +8,4 @@ This is the official rain language website
 
 ## Deploy
 
-For now for this you should use `npm run build`, because pnpm doesn't seem to work right.
+For now for this you should use `npm run deploy`, because pnpm doesn't seem to work right.
