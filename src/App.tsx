@@ -5,8 +5,8 @@ import init, { add_module, init_engine } from "./assets/reverse-bin/portal_wasm_
 const App = () => {
     init().then(() => {
         add_module("repl", `
-func print(s String)
-func printI(i Int)
+import func print(s String)
+import func printI(i Int)
         `);
         init_engine();
     });
