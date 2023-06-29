@@ -1,6 +1,10 @@
-FROM node:18-alpine
+FROM node:20-alpine
+
 WORKDIR /app
+
+COPY package.json .
+RUN npm install
+
 COPY . .
-RUN yarn install # --production
-CMD ["yarn", "start", "--host", "--port", "80"] # Temporary because this starts the dev server
-EXPOSE 80
+
+CMD ["npm", "run", "dev", "--", "--host"]
